@@ -17,7 +17,7 @@
 	
 })();
 
-function createToast(message, imgUrl, imgAlt) {
+function createToast(title, message, imgUrl, imgAlt) {
 	"use strict";
 	    
     // Namespace: Windows.UI.Notifications
@@ -68,7 +68,11 @@ function createToast(message, imgUrl, imgAlt) {
         var toast = new notifications.ToastNotification(templateContent);
         var toastNotifier = new notifications.ToastNotificationManager.createToastNotifier();
         toastNotifier.show(toast);
+
     } else if ("Notification" in window) {
+
+        //Set the title
+        var _title = title || "Yo!"; 
 
         //Set the options
         var options = {
@@ -79,19 +83,19 @@ function createToast(message, imgUrl, imgAlt) {
         // Web notifications
         if (Notification.permission === "granted") {
 			// If it's okay let's create a notification
-			var n = new Notification("Yo!", options);
+			var n = new Notification(_title, options);
 			setTimeout(n.close.bind(n), 5000);
 			}
 			
 			// Otherwise, we need to ask the user for permission
 			else if (Notification.permission !== 'denied') {
-			Notification.requestPermission(function (permission) {
-  			// If the user accepts, let's create a notification
-  				if (permission === "granted") {
-    				var n = new Notification("Yo!", options);
-    				setTimeout(n.close.bind(n), 5000);
-  				}
-			});
+    			Notification.requestPermission(function (permission) {
+      			// If the user accepts, let's create a notification
+      				if (permission === "granted") {
+        				var n = new Notification(_title, options);
+        				setTimeout(n.close.bind(n), 5000);
+      				}
+    			});
 			}
     } else {
     	// Fallback if no native notifications are supported
