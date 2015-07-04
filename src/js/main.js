@@ -69,11 +69,17 @@ function createToast(message, imgUrl, imgAlt) {
         var toastNotifier = new notifications.ToastNotificationManager.createToastNotifier();
         toastNotifier.show(toast);
     } else if ("Notification" in window) {
+
+        //Set the options
+        var options = {
+            body: message || "Demo message",
+            icon: imgUrl || "https://unsplash.it/150/?random"
+        }
         
         // Web notifications
         if (Notification.permission === "granted") {
 			// If it's okay let's create a notification
-			var n = new Notification("Yo!");
+			var n = new Notification("Yo!", options);
 			setTimeout(n.close.bind(n), 5000);
 			}
 			
@@ -82,7 +88,7 @@ function createToast(message, imgUrl, imgAlt) {
 			Notification.requestPermission(function (permission) {
   			// If the user accepts, let's create a notification
   				if (permission === "granted") {
-    				var n = new Notification("Yo!");
+    				var n = new Notification("Yo!", options);
     				setTimeout(n.close.bind(n), 5000);
   				}
 			});
