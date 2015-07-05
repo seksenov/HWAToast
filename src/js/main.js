@@ -7,7 +7,7 @@
             typeof Windows.UI.WebUI !== "undefined") {
 	    Windows.UI.WebUI.WebUIApplication.addEventListener('activated', function (args) {
 	        var activation = Windows.ApplicationModel.Activation;
-
+            // Handle user unteraction / activation from toast notification on Windows
 	        if (args.kind === activation.ActivationKind.toastNotification) {
 	            console.log(args.argument);
 	            console.log(args.userInput.textReply);
@@ -17,7 +17,7 @@
 	
 })();
 
-function createToast(title, message, imgUrl, imgAlt) {
+function createToast(title, message, imgUrl, imgAlt, tag, lang) {
 	"use strict";
 	    
     // Namespace: Windows.UI.Notifications
@@ -77,13 +77,16 @@ function createToast(title, message, imgUrl, imgAlt) {
         //Set the options
         var options = {
             body: message || "Demo message",
-            icon: imgUrl || "https://unsplash.it/150/?random"
-        }
+            icon: imgUrl || "https://unsplash.it/150/?random",
+            tag: tag || "DemoN",
+            lang: lang || "en-us"
+        };
         
         // Web notifications
         if (Notification.permission === "granted") {
 			// If it's okay let's create a notification
 			var n = new Notification(_title, options);
+            n.addEventListener("click", clicked);
 			setTimeout(n.close.bind(n), 5000);
 			}
 			
@@ -93,13 +96,44 @@ function createToast(title, message, imgUrl, imgAlt) {
       			// If the user accepts, let's create a notification
       				if (permission === "granted") {
         				var n = new Notification(_title, options);
+                        n.addEventListener("click", clicked);
         				setTimeout(n.close.bind(n), 5000);
       				}
     			});
 			}
     } else {
     	// Fallback if no native notifications are supported
-    	// Build modal UI for notifications
+    	// In this case revert to alert
+        // Build modal UI for better notifications support
+
+        alert("Demo Notification");
 
     }
+}
+
+function notify () {
+    "use strict";
+
+    var title, message, imgUrl, imgAlt, tag, lang;
+
+    title = document.getElementById("title").value;
+    message = document.getElementById("message").value;
+    imgUrl = document.getElementById("image").value;
+    imgAlt = document.getElementById("image").value;
+
+    createToast(title, message, imgUrl, imgAlt, tag, lang);
+}
+
+function clicked (e) {
+    "use strict";
+
+    // Web notification has been clicked
+    console.log("The notification content: ");
+    console.log(e.target);
+
+    document.getElementById("userInteraction").innerHTML = "Clicked";
+    document.getElementById("titleOut").innerHTML = e.target.title;
+    document.getElementById("messageOut").innerHTML = e.target.body;
+    document.getElementById("imageOut").innerHTML = e.target.icon;
+    document.getElementById("values").className = "";
 }

@@ -2,13 +2,45 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <Title>Hosted App Starter</title>
+    <Title>Hosted App Notifications</title>
     <link rel="stylesheet" href="css/app.css" />
   </head>
   <body>
-    <h1>Title Goes Here!</h1>
-    <button onclick="createToast()">Notify!</button>
-    <div id="content"></div>
+    <h1>Hosted Web App Notifications</h1>
+    
+    <div id="content">
+
+      <p>Enter the information you'd like to see displayed in the notification. If fields are left blank they'll be poulated with default values.</p>
+      <p>Click and interact with the notification to view the retuned values.</p>
+      
+      <div id="info">
+        <h3>Create Notification</h3>
+        <label for="title">Title:</label>
+        <input id="title" type="text" placeholder="Notification title"><br>
+        <label for="message">Message:</label>
+        <input id="message" type="text" placeholder="Notification message"><br>
+        <label for="image">Image:</label>
+        <input id="image" type="text" placeholder="Notification image URL"><br>
+        <button id-"notify" onclick="notify()">Notify!</button><br>
+      </div>
+
+      <div id="interaction">
+        <h3>User Interaction</h3>
+        <div id="values" class="hidden">
+          <label>User Interaction Method: </label><span id="userInteraction"></span><br>
+          <label>Notification Title: </label><span id="titleOut"></span><br>
+          <label>Notification Message: </label><span id="messageOut"></span><br>
+          <label>Notification Image: </label><span id="imageOut"></span><br>
+        </div>
+        <div id="windowsValues" class="hidden">
+          <label>User Text: </label><span id="userText"></span><br>
+          <label>Button Clicked: </label><span id="userButton"></span>  
+        </div>
+        
+        
+      </div>
+      
+    </div>
     <script src="js/main.js"></script>
     <script src="bundles/bundle.js"></script>
   </body>
