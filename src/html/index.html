@@ -8,23 +8,41 @@
   <body>
     <h1>Hosted Web App Notifications</h1>
     
-    <div id="content">
+    <div id="content" >
 
       <p>Enter the information you'd like to see displayed in the notification. If fields are left blank they'll be poulated with default values.</p>
       <p>Click and interact with the notification to view the retuned values.</p>
-      
-      <div id="info">
-        <h3>Create Notification</h3>
-        <label for="title">Title:</label>
+
+      <div id="container" class="flex-container">
+
+        <div id="info" class="flex-item">
+        <ul class="input-list style-2 clearfix">
+          <li>
+            <h3>Create Notification</h3>
+          </li>
+          <li>
+            <input id="title" type="text" placeholder="Notification title"><br>
+          </li>
+          <li>
+            <input id="message" type="text" placeholder="Notification message"><br>
+          </li>
+          <li>
+            <input id="image" type="text" placeholder="Notification image URL"><br>
+          </li>
+          <li>
+            <button id-"notify" onclick="notify()">Notify!</button><br>
+          </li>
+        </ul>
+
+        <!-- <label for="title">Title:</label>
         <input id="title" type="text" placeholder="Notification title"><br>
         <label for="message">Message:</label>
         <input id="message" type="text" placeholder="Notification message"><br>
         <label for="image">Image:</label>
-        <input id="image" type="text" placeholder="Notification image URL"><br>
-        <button id-"notify" onclick="notify()">Notify!</button><br>
+        <input id="image" type="text" placeholder="Notification image URL"><br> -->
       </div>
 
-      <div id="interaction">
+      <div id="interaction" class="flex-item">
         <h3>User Interaction</h3>
         <div id="values" class="hidden">
           <label>User Interaction Method: </label><span id="userInteraction"></span><br>
@@ -37,6 +55,8 @@
           <label>Button Clicked: </label><span id="userButton"></span>  
         </div>
         
+        
+      </div>
         
       </div>
       
