@@ -1,3 +1,4 @@
+
 (function () {
     "use strict";
 
@@ -7,15 +8,39 @@
             typeof Windows.UI.WebUI !== "undefined") {
 	    Windows.UI.WebUI.WebUIApplication.addEventListener('activated', function (args) {
 	        var activation = Windows.ApplicationModel.Activation;
-            // Handle user unteraction / activation from toast notification on Windows
-	        if (args.kind === activation.ActivationKind.toastNotification) {
+            console.log("The app is activated");
+            console.log("The tyoe of activation received: " + args.kind);
+            console.log("The args received: " + args.arguments);
+            console.log("Toast activation kind: " + activation.ActivationKind.toastNotification);
+
+            // Handle applcation launch from the Windows OS
+            if (args.kind === activation.ActivationKind.launch) {
+                // The app has been activated from launch
+
+                if(args.arguments) {
+                    var launchArgs = JSON.parse(args.arguments);
+                    // Handle launch from Toast Notification
+                    if (launchArgs.type === "toast") {
+                       console.log("These are the launch args:");
+                       console.log(launchArgs);
+                    }
+                }
+            }
+            // Handle user interaction from toast notification on Windows
+	        else if (args.kind === activation.ActivationKind.toastNotification) {
+                console.log("Notification clicked");
 	            console.log(args.argument);
 	            console.log(args.userInput.textReply);
+                toastHandler(args.argument, args.userInput.textReply);
 	        }
 	    });
 	}
 	
 })();
+
+function toastHandler (args, userText) {
+
+}
 
 function createToast(title, message, imgUrl, imgAlt, tag, lang) {
 	"use strict";
@@ -32,12 +57,21 @@ function createToast(title, message, imgUrl, imgAlt, tag, lang) {
             toastImage = templateContent.getElementsByTagName('image'),
             toastElement = templateContent.selectSingleNode('/toast');
 
+        var launchParams = {
+            type: "toast",
+            id: tag || "demoToast",
+            heading: title || "Demo title",
+            body: message || "Demo message"
+        };
+
+        var launchString = JSON.stringify(launchParams);
+      
         // Set message & image in toast template
         toastMessage[0].appendChild(templateContent.createTextNode(message || 'Demo message'));
         toastImage[0].setAttribute('src', imgUrl || 'https://unsplash.it/150/?random');
         toastImage[0].setAttribute('alt', imgAlt || 'Random sample image');
         toastElement.setAttribute('duration', 'long');
-        toastElement.setAttribute('launch', '{"type":"toast","code":"info"}'); // Optional Launch Parameter
+        toastElement.setAttribute('launch', launchString); // Optional Launch Parameter
 
         // Add actions
         var actions = templateContent.createElement('actions');
@@ -105,8 +139,9 @@ function createToast(title, message, imgUrl, imgAlt, tag, lang) {
     	// Fallback if no native notifications are supported
     	// In this case revert to alert
         // Build modal UI for better notifications support
+        var alertText = title || "Demo Title";
 
-        alert("Demo Notification");
+        alert(alertText);
 
     }
 }

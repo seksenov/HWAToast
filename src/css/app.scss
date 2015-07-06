@@ -88,13 +88,14 @@ ul.input-list li {
 .flex-item {
   display: flex;
   justify-content: center;
-  align-items: center;
+  //align-items: center;
   position: relative;
   padding: 1.5em 1em;
   //border-radius: 5px;
   background-color: #f1c40f;
   text-align: center;
   width: 450px;
+  height: 300px;
   margin: 10px;
 }
 
