@@ -8,29 +8,24 @@
             typeof Windows.UI.WebUI !== "undefined") {
 	    Windows.UI.WebUI.WebUIApplication.addEventListener('activated', function (args) {
 	        var activation = Windows.ApplicationModel.Activation;
-            console.log("The app is activated");
-            console.log("The tyoe of activation received: " + args.kind);
-            console.log("The args received: " + args.arguments);
-            console.log("Toast activation kind: " + activation.ActivationKind.toastNotification);
 
             // Handle applcation launch from the Windows OS
             if (args.kind === activation.ActivationKind.launch) {
-                // The app has been activated from launch
-
+                // Check if there are launch args
                 if(args.arguments) {
                     var launchArgs = JSON.parse(args.arguments);
-                    // Handle launch from Toast Notification
+
                     if (launchArgs.type === "toast") {
-                       console.log("These are the launch args:");
-                       console.log(launchArgs);
+                        console.log(args);
+                        // The app has been launched from the click of a notification
+                        //console.log("The app has been launched from a toast click. These are the launch args:");
+                        //console.log(launchArgs);
                     }
                 }
             }
             // Handle user interaction from toast notification on Windows
 	        else if (args.kind === activation.ActivationKind.toastNotification) {
-                console.log("Notification clicked");
-	            console.log(args.argument);
-	            console.log(args.userInput.textReply);
+                console.log(args);
                 toastHandler(args.argument, args.userInput.textReply);
 	        }
 	    });
@@ -38,7 +33,9 @@
 	
 })();
 
-function toastHandler (args, userText) {
+function toastHandler (btnClicked, userText) {
+    //console.log("User clicked on the: " + btnClicked + " button");
+    //console.log("User replied with: " + userText);
 
 }
 
@@ -84,14 +81,14 @@ function createToast(title, message, imgUrl, imgAlt, tag, lang) {
         input.setAttribute('id', 'textReply');
         actions.appendChild(input);
 
-            // Create a yes button
+        // Create a yes button
         var btnYes = templateContent.createElement('action');
         btnYes.setAttribute('content', 'Yes');
         btnYes.setAttribute('arguments', 'yes');
         btnYes.setAttribute('launchType', 'foreground');
         actions.appendChild(btnYes);
 
-            //Create a no button
+        //Create a no button
         var btnNo = templateContent.createElement('action');
         btnNo.setAttribute('content', 'No');
         btnNo.setAttribute('arguments', 'no');
@@ -101,6 +98,8 @@ function createToast(title, message, imgUrl, imgAlt, tag, lang) {
         // Show the toast
         var toast = new notifications.ToastNotification(templateContent);
         var toastNotifier = new notifications.ToastNotificationManager.createToastNotifier();
+        toast.tag = "demoToast";
+        console.log(toast);        
         toastNotifier.show(toast);
 
     } else if ("Notification" in window) {
