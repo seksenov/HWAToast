@@ -1,4 +1,3 @@
-
 (function () {
     "use strict";
 
@@ -16,10 +15,8 @@
                     var launchArgs = JSON.parse(args.arguments);
 
                     if (launchArgs.type === "toast") {
-                        console.log(args);
-                        // The app has been launched from the click of a notification
-                        //console.log("The app has been launched from a toast click. These are the launch args:");
-                        //console.log(launchArgs);
+                    // The app has been launched from the click of a notification
+                    console.log(args);
                     }
                 }
             }
@@ -30,13 +27,32 @@
 	        }
 	    });
 	}
-	
 })();
 
-function toastHandler (btnClicked, userText) {
-    //console.log("User clicked on the: " + btnClicked + " button");
-    //console.log("User replied with: " + userText);
+document.addEventListener("DOMContentLoaded", function(e) {
+    "use strict";
 
+    if (isWindows()) {
+        document.getElementById("windowsData").className = "flex-item";
+    }
+});
+
+function isWindows () {
+    "use strict";
+
+    if (typeof Windows === "undefined") {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+function toastHandler (btnClicked, userText) {
+    "use strict";
+
+    document.getElementById("userButton").innerHTML(btnClicked);
+    document.getElementById("userText").innerHTML(userText);
 }
 
 function createToast(title, message, imgUrl, imgAlt, tag, lang) {
@@ -141,7 +157,6 @@ function createToast(title, message, imgUrl, imgAlt, tag, lang) {
         var alertText = title || "Demo Title";
 
         alert(alertText);
-
     }
 }
 
@@ -162,12 +177,8 @@ function clicked (e) {
     "use strict";
 
     // Web notification has been clicked
-    console.log("The notification content: ");
-    console.log(e.target);
-
     document.getElementById("userInteraction").innerHTML = "Clicked";
     document.getElementById("titleOut").innerHTML = e.target.title;
     document.getElementById("messageOut").innerHTML = e.target.body;
     document.getElementById("imageOut").innerHTML = e.target.icon;
-    document.getElementById("values").className = "";
 }
