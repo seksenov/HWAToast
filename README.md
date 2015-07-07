@@ -1,61 +1,42 @@
-Build system for Windows 10 App Demos
+Demo: Notifications
 ============
 
-Starter Gulp + Browserify project + Appx Tools
+This demo shows a quick way to add a notification to your website. It's intended purpose is to show native notifications from remote code in a Hosted Web App on Windows 10 but has fallbacks to web notifications, followed by alerts if the website is run in the browser.
 
-Includes the following tools, tasks, and workflows:
+In order for the Windows Toast code to work you need to be running this project as a Universal Windows App on a Windows 10 device. Otherwise you'll be able to check it out in the browser.
 
-- [Browserify](http://browserify.org/) (with [browserify-shim](https://github.com/thlorenz/browserify-shim))
-- Windows 10 Hosted App Build System
-- [Watchify](https://github.com/substack/watchify) (caching version of browserify for super fast rebuilds)
-- [SASS](http://sass-lang.com/) (super fast libsass with [source maps](https://github.com/sindresorhus/gulp-ruby-sass#sourcemap), and [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))
-- [BrowserSync](http://browsersync.io) for live reloading and a static server
-- [Image optimization](https://www.npmjs.com/package/gulp-imagemin)
-- Error handling in the console [and in Notification Center](https://github.com/mikaelbr/gulp-notify)
-- Shimming non common-js vendor code with other dependencies (like a jQuery plugin)
-- Multiple bundles with shared dependencies
-- Separate compression task for production builds
+> You'll want to install our [yo generator](https://github.com/MicrosoftEdge/generator-appx) first.
 
-### Install npm dependencies
-```
-npm install
-```
-
-This runs through all dependencies listed in `package.json` and downloads them to a `node_modules` folder in your project directory.
-
-### The `gulp` command
-You can  install gulp globally with `npm install -g gulp`, which will add the gulp script to your global bin folder.
-
-To use the version that's specified in your project's package.json.  You can simply alias `./node_modules/.bin/gulp` to `gulp`. Open up `~/.zshrc` or `~./bashrc` and add the following line:
+#### Step 1
+Create a new yo project
 
 ```
-alias gulp='node_modules/.bin/gulp'
+mkdir toast
+cd toast
+yo appx
+``` 
+
+Complete the generator by answering the questions.
+
+#### Step 2
+Let's get the project started, and do some live Code!
+
+- Make sure you have [developer mode](https://msdn.microsoft.com/en-us/library/windows/apps/dn706236.aspx) enabled.
+- Setup Microsoft Edge [Loopback exception](http://dev.modern.ie/platform/faq/how-can-i-debug-localhost/)
+- Then from the command line, type:
 ```
-Now, running `gulp` in the project directory will use the version specified and installed from the `package.json` file.
-
-### Run gulp
-
-```
-gulp
+gulp appx:dev
 ```
 
-This will run the `default` gulp task defined in `gulp/tasks/default.js`, which has the following task dependencies: `['sass', 'images', 'markup', 'watch']`
-- The `sass` task compiles your css files.
-- `images` moves images copies images from a source folder, performs optimizations, the outputs them into the build folder
-- `markup` doesn't do anything but copy an html file over from src to build, but here is where you could do additional templating work.
-- `watch` has `watchify` as a dependency, which will run the browserifyTask with a `devMode` flag that enables sourcemaps and watchify, a browserify add-on that enables caching for super fast recompiling. The task itself starts watching source files and will re-run the appropriate tasks when those files change.
+#### Step 3
+Code! - Add some code to **main.js**, **index.html**, and **app.scss**
 
-#### gulp appx
-This command will install your App as a hosted app pointing to `http://localhost:3000` and then launch it.
+- Copy and paste the code from this project into the corresponding files
+- Save and let the app update
 
-#### gulp production
+#### Step 4
+Create a Notification
 
-There is also a `production` task you can run with `gulp production`, which will re-build optimized, compressed css and js files to the build folder, as well as output their file sizes to the console. It's a shortcut for running the following tasks: `['images', 'minifyCss', 'uglifyJs']`.
-
-### Configuration
-All paths and plugin settings have been abstracted into a centralized config object in `gulp/config.js`. Adapt the paths and settings to the structure and needs of your project.
-
-### 
-Application icon: [web design by Simple Icons from the Noun Project](https://thenounproject.com/search/?q=code&i=32232)
-
-Project using: [Gulp Starter](https://github.com/greypants/gulp-starter) as base
+- Enter the values you'd like to see in the notification
+- Hit notify and interact with the notification
+- You'll see the values from the notification passed back to the site
