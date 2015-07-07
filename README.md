@@ -38,5 +38,5 @@ Code! - Add some code to **main.js**, **index.html**, and **app.scss**
 Create a Notification
 
 - Enter the values you'd like to see in the notification
-- Hit notify and interact with the notification
+- Hit notify then click ands interact with the notification
 - You'll see the values from the notification passed back to the site
