@@ -24,7 +24,7 @@ Create a Notification
 - Enter the values you'd like to see in the notification
 - Hit Notify!
 
-### Step 3
+#### Step 3
 Interact with the Notification
 
 - Fill the text box in the toast notification with a message
