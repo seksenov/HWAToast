@@ -22,7 +22,6 @@ You will also have an external URL that you can connect to from a mobile device.
 Create a Notification
 
 - Enter the values you'd like to see in the notification
-- Hit Notify!
 
 #### Step 3
 Interact with the Notification
