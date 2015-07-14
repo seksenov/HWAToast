@@ -23,8 +23,8 @@
             // Handle user interaction from toast notification on Windows
 	        else if (args.kind === activation.ActivationKind.toastNotification) {
                 console.log(args);
-                console.log("Button clicked: " + args.argument + " Text: " + args.userInput.textReply);
-                //toastHandler(args.argument, args.userInput.textReply);
+                
+                toastHandler(args.argument, args.userInput.textReply);
 	        }
 	    });
 	}
@@ -52,8 +52,17 @@ function isWindows () {
 function toastHandler (btnClicked, userText) {
     "use strict";
 
-    document.getElementById("userButton").innerHTML(btnClicked);
-    document.getElementById("userText").innerHTML(userText);
+    console.log("Button clicked: " + btnClicked + " Text: " + userText);
+
+    try {
+        document.getElementById("userButton").innerHTML(btnClicked);
+        document.getElementById("userText").innerHTML(userText);
+    }
+    catch(e) {
+        console.log(e);
+    }
+
+    
 }
 
 function createToast(title, message, imgUrl, imgAlt, tag, lang) {
