@@ -55,8 +55,8 @@ function toastHandler (btnClicked, userText) {
     console.log("Button clicked: " + btnClicked + " Text: " + userText);
 
     try {
-        document.getElementById("userButton").innerHTML(btnClicked);
-        document.getElementById("userText").innerHTML(userText);
+        document.getElementById("userButton").innerHTML = btnClicked;
+        document.getElementById("userText").innerHTML = userText;
     }
     catch(e) {
         console.log(e);
