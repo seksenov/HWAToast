@@ -23,7 +23,7 @@
             // Handle user interaction from toast notification on Windows
 	        else if (args.kind === activation.ActivationKind.toastNotification) {
                 console.log(args);
-                toastHandler(args.argument, args.userInput.textReply);
+                //toastHandler(args.argument, args.userInput.textReply);
 	        }
 	    });
 	}
