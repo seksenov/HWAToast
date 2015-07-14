@@ -21,9 +21,7 @@
                 }
             }
             // Handle user interaction from toast notification on Windows
-	        else if (args.kind === activation.ActivationKind.toastNotification) {
-                console.log(args);
-                
+	        else if (args.kind === activation.ActivationKind.toastNotification) {                
                 toastHandler(args.argument, args.userInput.textReply);
 	        }
 	    });
@@ -52,17 +50,8 @@ function isWindows () {
 function toastHandler (btnClicked, userText) {
     "use strict";
 
-    console.log("Button clicked: " + btnClicked + " Text: " + userText);
-
-    try {
-        document.getElementById("userButton").innerHTML = btnClicked;
-        document.getElementById("userText").innerHTML = userText;
-    }
-    catch(e) {
-        console.log(e);
-    }
-
-    
+    document.getElementById("userButton").innerHTML = btnClicked;
+    document.getElementById("userText").innerHTML = userText;
 }
 
 function createToast(title, message, imgUrl, imgAlt, tag, lang) {
