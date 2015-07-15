@@ -1,6 +1,6 @@
-(function () {
-    "use strict";
+"use strict";
 
+(function () {
     // Add the event listener to handle Windows activated event
     if (typeof Windows !== "undefined" &&
             typeof Windows.UI !== "undefined" &&
@@ -29,15 +29,18 @@
 })();
 
 document.addEventListener("DOMContentLoaded", function(e) {
-    "use strict";
 
     if (isWindows()) {
         document.getElementById("windowsData").className = "flex-item";
     }
+    else {
+        document.getElementById("interaction").className = "flex-item";
+    }
+
+    document.getElementById("notify").addEventListener("click", notify);
 });
 
 function isWindows () {
-    "use strict";
 
     if (typeof Windows === "undefined") {
         return false;
@@ -48,14 +51,12 @@ function isWindows () {
 }
 
 function toastHandler (btnClicked, userText) {
-    "use strict";
 
     document.getElementById("userButton").innerHTML = btnClicked;
     document.getElementById("userText").innerHTML = userText;
 }
 
 function createToast(title, message, imgUrl, imgAlt, tag, lang) {
-	"use strict";
 	    
     // Namespace: Windows.UI.Notifications
     if (typeof Windows !== 'undefined' &&
@@ -152,7 +153,7 @@ function createToast(title, message, imgUrl, imgAlt, tag, lang) {
     } else {
     	// Fallback if no native notifications are supported
     	// In this case revert to alert
-        // Build modal UI for better notifications support
+        // TODO: Build modal UI for better experience
         var alertText = title || "Demo Title";
 
         alert(alertText);
@@ -160,8 +161,7 @@ function createToast(title, message, imgUrl, imgAlt, tag, lang) {
 }
 
 function notify () {
-    "use strict";
-
+    // Pull the user input from the page and create the notification
     var title, message, imgUrl, imgAlt, tag, lang;
 
     title = document.getElementById("title").value;
@@ -173,11 +173,9 @@ function notify () {
 }
 
 function clicked (e) {
-    "use strict";
-
     // Web notification has been clicked
-    document.getElementById("userInteraction").innerHTML = "Clicked";
     document.getElementById("titleOut").innerHTML = e.target.title;
     document.getElementById("messageOut").innerHTML = e.target.body;
     document.getElementById("imageOut").innerHTML = e.target.icon;
+    document.getElementById("tagOut").innerHTML = e.target.tag;
 }

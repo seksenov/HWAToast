@@ -30,25 +30,25 @@
             <input id="image" type="text" placeholder="Notification image URL"><br>
           </li>
           <li>
-            <button id="notify" onclick="notify()">Notify!</button><br>
+            <button id="notify">Notify!</button><br>
           </li>
         </ul>
 
       </div>
 
-      <div id="interaction" class="flex-item">
-        <div id="interaction">
+      <div id="interaction" class="hidden">
+        <div id="interactionValues">
           <h3>Notification Info</h3>
-          <label>User Interaction Method: </label><span id="userInteraction"></span><br><br>
           <label>Notification Title: </label><span id="titleOut"></span><br><br>
           <label>Notification Message: </label><span id="messageOut"></span><br><br>
-          <label>Notification Image: </label><span id="imageOut"></span><br>
+          <label>Notification Image: </label><span id="imageOut"></span><br><br>
+          <label>Notification Tag: </label><span id="tagOut"></span><br>
         </div>
       </div>
 
       <div id="windowsData" class="hidden">
         <div id="windowsValues">
-          <h3>Windows Info</h3>
+          <h3>Windows Notification Info</h3>
           <label>Response Button: </label><span id="userButton"></span><br><br>  
           <label>User Text: </label><span id="userText"></span><br>
         </div>
