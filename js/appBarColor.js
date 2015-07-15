@@ -87,7 +87,7 @@ function hexStrToRGBA(hexStr){
 
 // Initialize when the Window loads
 addEventListener('load', function(){
-  var brandColor = '#e67e22';
-  var brandColorInactive = '#e67e22';
+  var brandColor = '#2c3e50';
+  var brandColorInactive = '#2c3e50';
   setAppBarColors(brandColor,brandColorInactive);
 });
