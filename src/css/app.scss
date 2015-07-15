@@ -103,16 +103,12 @@ ul.input-list li {
   border: solid 5px #2980b9;
 }
 
-body {
-  margin: 0;
-  background-color: #2980b9;
-}
 
 $white: #FFF;
 $black: #000;
 $button-width: 180px;
 
-#notify {
+.button {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -147,4 +143,9 @@ $button-width: 180px;
     margin-top: - $button-width;
     transform: scaleX(0) scaleY(0);
   }
+}
+
+#buttoncontainer {
+  position: relative;
+
 }
