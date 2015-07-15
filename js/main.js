@@ -1,10 +1,10 @@
-"use strict";
+'use strict';
 
 (function () {
     // Add the event listener to handle Windows activated event
-    if (typeof Windows !== "undefined" &&
-            typeof Windows.UI !== "undefined" &&
-            typeof Windows.UI.WebUI !== "undefined") {
+    if (typeof Windows !== 'undefined' &&
+            typeof Windows.UI !== 'undefined' &&
+            typeof Windows.UI.WebUI !== 'undefined') {
 	    Windows.UI.WebUI.WebUIApplication.addEventListener('activated', function (args) {
 	        var activation = Windows.ApplicationModel.Activation;
 
@@ -14,7 +14,7 @@
                 if(args.arguments) {
                     var launchArgs = JSON.parse(args.arguments);
 
-                    if (launchArgs.type === "toast") {
+                    if (launchArgs.type === 'toast') {
                     // The app has been launched from the click of a notification
                     console.log(args);
                     }
@@ -28,13 +28,13 @@
 	}
 })();
 
-document.addEventListener("DOMContentLoaded", function(e) {
+document.addEventListener('DOMContentLoaded', function(e) {
 
     if (isWindows()) {
-        document.getElementById("windowsData").className = "flex-item";
+        document.getElementById('windowsData').className = 'flex-item';
     }
     else {
-        document.getElementById("interaction").className = "flex-item";
+        document.getElementById('interaction').className = 'flex-item';
     }
     var button = document.querySelector('.button');
     button.addEventListener('click', function(e) {
@@ -47,12 +47,12 @@ document.addEventListener("DOMContentLoaded", function(e) {
       TweenMax.to(feedback, 1.5, {scaleX: 1, scaleY: 1, opacity: 0, ease: Expo.easeOut});
     });
 
-    document.getElementById("notify").addEventListener("click", notify);
+    document.getElementById('notify').addEventListener('click', notify);
 });
 
 function isWindows () {
 
-    if (typeof Windows === "undefined") {
+    if (typeof Windows === 'undefined') {
         return false;
     }
     else {
@@ -62,8 +62,8 @@ function isWindows () {
 
 function toastHandler (btnClicked, userText) {
 
-    document.getElementById("userButton").innerHTML = btnClicked;
-    document.getElementById("userText").innerHTML = userText;
+    document.getElementById('userButton').innerHTML = btnClicked;
+    document.getElementById('userText').innerHTML = userText;
 }
 
 function createToast(title, message, imgUrl, imgAlt, tag, lang) {
@@ -81,10 +81,10 @@ function createToast(title, message, imgUrl, imgAlt, tag, lang) {
             toastElement = templateContent.selectSingleNode('/toast');
 
         var launchParams = {
-            type: "toast",
-            id: tag || "demoToast",
-            heading: title || "Demo title",
-            body: message || "Demo message"
+            type: 'toast',
+            id: tag || 'demoToast',
+            heading: title || 'Demo title',
+            body: message || 'Demo message'
         };
 
         var launchString = JSON.stringify(launchParams);
@@ -124,28 +124,28 @@ function createToast(title, message, imgUrl, imgAlt, tag, lang) {
         // Show the toast
         var toast = new notifications.ToastNotification(templateContent);
         var toastNotifier = new notifications.ToastNotificationManager.createToastNotifier();
-        toast.tag = "demoToast";
+        toast.tag = 'demoToast';
         console.log(toast);        
         toastNotifier.show(toast);
 
-    } else if ("Notification" in window) {
+    } else if ('Notification' in window) {
 
         //Set the title
-        var _title = title || "Yo!"; 
+        var _title = title || 'Yo!'; 
 
         //Set the options
         var options = {
-            body: message || "Demo message",
-            icon: imgUrl || "https://unsplash.it/150/?random",
-            tag: tag || "DemoN",
-            lang: lang || "en-us"
+            body: message || 'Demo message',
+            icon: imgUrl || 'https://unsplash.it/150/?random',
+            tag: tag || 'DemoN',
+            lang: lang || 'en-us'
         };
         
         // Web notifications
-        if (Notification.permission === "granted") {
+        if (Notification.permission === 'granted') {
 			// If it's okay let's create a notification
 			var n = new Notification(_title, options);
-            n.addEventListener("click", clicked);
+            n.addEventListener('click', clicked);
 			setTimeout(n.close.bind(n), 5000);
 			}
 			
@@ -153,9 +153,9 @@ function createToast(title, message, imgUrl, imgAlt, tag, lang) {
 			else if (Notification.permission !== 'denied') {
     			Notification.requestPermission(function (permission) {
       			// If the user accepts, let's create a notification
-      				if (permission === "granted") {
+      				if (permission === 'granted') {
         				var n = new Notification(_title, options);
-                        n.addEventListener("click", clicked);
+                        n.addEventListener('click', clicked);
         				setTimeout(n.close.bind(n), 5000);
       				}
     			});
@@ -164,7 +164,7 @@ function createToast(title, message, imgUrl, imgAlt, tag, lang) {
     	// Fallback if no native notifications are supported
     	// In this case revert to alert
         // TODO: Build modal UI for better experience
-        var alertText = title || "Demo Title";
+        var alertText = title || 'Demo Title';
 
         alert(alertText);
     }
@@ -174,19 +174,19 @@ function notify () {
     // Pull the user input from the page and create the notification
     var title, message, imgUrl, imgAlt, tag, lang;
 
-    title = document.getElementById("title").value;
-    message = document.getElementById("message").value;
-    imgUrl = document.getElementById("image").value;
-    imgAlt = document.getElementById("image").value;
+    title = document.getElementById('title').value;
+    message = document.getElementById('message').value;
+    imgUrl = document.getElementById('image').value;
+    imgAlt = document.getElementById('image').value;
 
     createToast(title, message, imgUrl, imgAlt, tag, lang);
 }
 
 function clicked (e) {
     // Web notification has been clicked
-    document.getElementById("titleOut").innerHTML = e.target.title;
-    document.getElementById("messageOut").innerHTML = e.target.body;
-    document.getElementById("imageOut").innerHTML = e.target.icon;
-    document.getElementById("tagOut").innerHTML = e.target.tag;
+    document.getElementById('titleOut').innerHTML = e.target.title;
+    document.getElementById('messageOut').innerHTML = e.target.body;
+    document.getElementById('imageOut').innerHTML = e.target.icon;
+    document.getElementById('tagOut').innerHTML = e.target.tag;
 }
 
