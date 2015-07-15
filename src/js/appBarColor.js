@@ -11,6 +11,8 @@
 
 */
 
+"use strict";
+
 function setAppBarColors(brandColorHex, brandColorInactiveHex) {
    // Detect if the Windows namespace exists in the global object
    if (typeof Windows !== 'undefined' &&
