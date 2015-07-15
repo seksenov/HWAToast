@@ -27,7 +27,7 @@ function setAppBarColors(brandColorHex, brandColorInactiveHex) {
         var white = hexStrToRGBA('#FFF');
 
         appTitleBar.foregroundColor = brandColor;
-        appTitleBar.backgroundColor = white;
+        appTitleBar.backgroundColor = brandColor;
 
         appTitleBar.buttonForegroundColor = white;
         appTitleBar.buttonBackgroundColor = brandColor;
