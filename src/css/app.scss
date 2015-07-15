@@ -91,6 +91,20 @@ ul.input-list li {
   margin: 10px;
 }
 
+.flex-text {
+  flex-basis: 100%;
+  //margin-left: 150px;
+  //margin-right: 150px;
+}
+
+.text-container {
+  width: 986px;
+  margin: auto;
+  @media all and (max-width: 1023px) {
+    width: 483px;
+  }
+}
+
 /* ============================================================
   STYLE 2
 ============================================================ */
