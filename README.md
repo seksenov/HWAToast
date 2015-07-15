@@ -6,6 +6,9 @@ This demo shows a quick way to add a notification to your website. It's intended
 In order for the Windows Toast code to work you need to be running this project as a Universal Windows App on a Windows 10 device. Otherwise you'll be able to check it out in the browser.
 
 ### To Run on Windows 10:
+![img](https://raw.githubusercontent.com/wiki/seksenov/HWAToast/images/HWAToastScreenToastUp.PNG)
+![img](https://raw.githubusercontent.com/wiki/seksenov/HWAToast/images/HWAToastScreenResponse.PNG)
+
 
 #### Step 1
 Clone the repo locally 
