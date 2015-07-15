@@ -1,11 +1,11 @@
 Demo: Notifications
 ============
 
-This demo shows a quick way to add a notification to your website. It's intended purpose is to show native notifications from remote code in a Hosted Web App on Windows 10 but has fallbacks to web notifications, followed by alerts if the website is run in the browser.
+This demo shows a quick way to add a notification to your website. It's intended purpose is to show native notifications from remote code in a Hosted Web App on Windows 10 but has fallbacks to web notifications, followed by alerts depending on the level of support provided by the browser in which the app is running.
 
 In order for the Windows Toast code to work you need to be running this project as a Universal Windows App on a Windows 10 device. Otherwise you'll be able to check it out in the browser.
 
-### For Windows 10:
+### To Run on Windows 10:
 
 #### Step 1
 Clone the repo locally 
@@ -28,7 +28,7 @@ Create a Notification
 Interact with the Notification
 
 - Fill the text box in the toast notification with a message
-- Click yes or know
+- Click yes or no
 - Check out the values packed back to the site
 
 #### More Info
