@@ -11,6 +11,8 @@
 
 */
 
+"use strict";
+
 function setAppBarColors(brandColorHex, brandColorInactiveHex) {
    // Detect if the Windows namespace exists in the global object
    if (typeof Windows !== 'undefined' &&
@@ -24,7 +26,7 @@ function setAppBarColors(brandColorHex, brandColorInactiveHex) {
         var black = hexStrToRGBA('#000');
         var white = hexStrToRGBA('#FFF');
 
-        appTitleBar.foregroundColor = white;
+        appTitleBar.foregroundColor = brandColor;
         appTitleBar.backgroundColor = brandColor;
 
         appTitleBar.buttonForegroundColor = white;
@@ -85,7 +87,7 @@ function hexStrToRGBA(hexStr){
 
 // Initialize when the Window loads
 addEventListener('load', function(){
-  var brandColor = '#16A085';
-  var brandColorInactive = '#ECF0F1';
+  var brandColor = '34495e';
+  var brandColorInactive = '34495e';
   setAppBarColors(brandColor,brandColorInactive);
 });
